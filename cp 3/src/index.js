@@ -59,7 +59,7 @@
 // 1. Неизменяемость
 {
     let colorLawn = {
-        title: 'Hello',
+        title: 'Grey',
         color: '#333',
         rating: 0
     };
@@ -189,4 +189,69 @@
     {
         // const header = props => <h1>{ props.title }</h1>;
     }
+}
+
+// преобразование данных
+{
+    const colleges = [
+        'Konyaev',
+        'TTK',
+        'MB',
+        'Kkk',
+        'K1',
+        'm2'
+    ];
+
+    // получить список с разделителем
+    console.log( colleges.join(' | ') );
+
+
+    // получить все колледжи начианющиеся с буквы k (K)
+    let collegesStartedWithK = colleges.filter(college => college[0].toLocaleLowerCase() === 'k'.toLocaleLowerCase())
+    console.log(collegesStartedWithK)
+
+    // для удаления из массива используем filter, а не splice или pop, т.к. они изменяют исходный массив
+    const deleteCollege = (cut, colleges) => 
+        colleges.filter(college => college !== cut);
+
+    // красивый вывод, wow
+    console.log (deleteCollege('MB', colleges).join('\n') );
+
+
+    // Array.map для изменения каждого элемента
+    const theBestColleges = colleges.map((college) => `${college} is the best college in the world`);
+    console.log(theBestColleges.join('\n'))
+
+    // сделаем из колледжей объекты
+    const objTheBestColleges = theBestColleges.map((college) => ({ name: college }))
+
+    console.log(objTheBestColleges)
+    // исходный массив не был изменен
+    console.log(theBestColleges)
+
+    const objColleges = colleges.map((college) => ({ name: college }))
+
+    // изменить название колледжа 
+    // const changeName = (oldName, name, colleges) => 
+    //     colleges.map(college => {
+    //         if (college.name === oldName) {
+    //             return {
+    //                 ...college,
+    //                 name
+    //             };
+    //         } else {
+    //             return college;
+    //         }
+    //     });
+
+    // сокращенная запись
+    const changeName = (oldName, name, colleges) => 
+        colleges.map(college => college.name === oldName ?
+            { ...college, name } :
+            college
+        );
+
+    console.log(objColleges)
+    console.log( changeName('MB', 'engineering college', objColleges) );
+
 }
