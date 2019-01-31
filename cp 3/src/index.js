@@ -254,4 +254,54 @@
     console.log(objColleges)
     console.log( changeName('MB', 'engineering college', objColleges) );
 
+
+    // преобразовать объект в массив можно воспользоваться Object.keys
+    const frederick = {
+        name: 'Ivan',
+        canRead: false,
+        canWrite: false
+    };
+    console.log(frederick)
+    const collegesNew = Object.keys(frederick);
+    console.log(collegesNew);
+
+    // преобразовать массив в объект можно воспользоваться Array.map и Object.keys
+    let arr = Object.keys(collegesNew).map(key =>
+            ({
+                name: key,
+                wins: collegesNew[key]
+            }) 
+        )
+    console.log(arr)
+
+    // найти макс. возраст при помощи Array.reduce(f)
+    const ages = [21, 15, 64, 24, 23, 11];
+    const maxAge = ages.reduce((max, age) => {
+        if (age > max) {
+            return age;
+        }
+        else {
+            return max;
+        }
+    });
+    console.log(`Максимальный возраст: ${maxAge}`)
+
+    // найти сумму возрастов
+    const sumOfAges = ages.reduce((sum, current) => sum += current)
+    console.log(`Сумма возрастов: ${sumOfAges}`)
+
+    // преобразовать 
+    const colors = ['green', 'red', 'green', 'red'];
+    const distinctColors = colors.reduce(
+        (distinct, color) => 
+            (distinct.indexOf(color) !== -1)
+    )
+
+    // композиция - для того, чтобы организовать вызов функций
+    const compose = (...fns) =>
+        (arg) => 
+            fns.reduce(
+                (composed, f) => f(composed),
+                arg
+            )
 }
