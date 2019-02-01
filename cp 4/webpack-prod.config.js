@@ -9,7 +9,7 @@ const sass = require('./webpack/sass');
 
 
 module.exports = {
-  entry: './src/public/js/index.js',
+  entry: './src/public/js/index.jsx',
   node: {
     fs: 'empty',
   },
