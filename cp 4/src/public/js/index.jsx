@@ -2,11 +2,7 @@ import '../sass/index.sass';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const title = React.createElement(
-  'h1',
-  null,
-  'Baked Salmon',
-);
+const title = React.createElement('h1', null, 'Baked Salmon');
 
 const list = React.createElement(
   'ul',
@@ -39,32 +35,39 @@ const ingredients = React.createElement(
   ),
 );
 
-class IngredientsList extends React.Component {
-  renderListItem(ingredient, i) {
-    return React.createElement('li', { key: i }, ingredient); // key нужен для эффективного обновления DOM (опционально)
-  }
-  render() {
-    return (
-      <div>hello<div>
-    ),
-    {/* return React.createElement(
-      'ul',
-      { className: 'ingredients' }, 
-        this.props.items.map((content, i) => renderListItem)
-    ) */}
-  }
-};
+// создать компонент при помощи класса
+// class IngredientsList extends React.Component {
+//   renderListItem(ingredient, i) {
+//     return React.createElement('li', { key: i }, ingredient); // key нужен для эффективного обновления DOM (опционально)
+//   }
+//   render() {
+//     return React.createElement(
+//       'ul',
+//       { className: 'ingredients' }, 
+//       this.props.items.map((content, i) => this.renderListItem(content, i))
+//     )
+//   }
+// };
 
-const listIngredient = React.createElement(IngredientsList, null, null);
+// создать компонент, как функциональный компонент без состояния
+const IngredientsList = ({items}) =>
+  React.createElement(
+    'ul',
+    { className: 'ingredients' },
+    items.map((ingredient, i) => 
+      React.createElement('li', { key: i }, ingredient)
+    )
+  )
+
 const container = React.createElement(
   'section',
   { id: 'baked-salmon' },
   title,
   list,
   ingredients,
-  listIngredient
 );
 
 ReactDOM.render(
-  React.createElement(container, null, null), document.querySelector('#react-app')
+  // React.createElement(container, null, null), document.querySelector('#react-app')
+  React.createElement(IngredientsList, { items }, null), document.querySelector('#react-app')
 );
