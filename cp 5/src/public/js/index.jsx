@@ -1,6 +1,6 @@
 import '../sass/index.sass';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 
 const data = [
   {
@@ -38,3 +38,21 @@ const data = [
     ]
   }
 ];
+
+// const Recipe = props => (
+
+// );
+
+const Menu = props => (
+  <article>
+    <header>
+      <h1></h1>
+    </header>
+    <div className="recipes"></div>
+  </article>
+);
+
+render(
+  <Menu recipes={data} title="Delicious Recipes" />,
+  document.querySelector('#react-app')
+)
