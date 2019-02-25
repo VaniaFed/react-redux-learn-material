@@ -2,104 +2,65 @@ import '../sass/index.sass';
 import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom';
 
-const data = [
-  {
-    "name": "Baked Salmon",
-    "ingredients": [
-      { "name": "Salmon", "amount": 1, "measurement": "l lb" },
-      { "name": "Pine Nuts", "amount": 1, "measurement": "cup" },
-      { "name": "Butter Lettuce", "amount": 2, "measurement": "cups" },
-      { "name": "Yellow Squash", "amount": 1, "measurement": "med" },
-      { "name": "Olive Oil", "amount": 0.5, "measurement": "cup" },
-      { "name": "Garlic", "amount": 3, "measurement": "cloves" }
-    ],
-    "steps": [
-      "Preheat the oven to 350 degrees.",
-      "Spread the olive oil around a glass baking dish.",
-      "Add the salmon, garlic, and pine nuts to the dish.",
-      "Bake for 15 minutes.",
-      "Add the yellow squash and put back in the oven for 30 mins.",
-      "Remove from oven and let cool for 15 minutes. Add the lettuce and serve."
-    ]
-  },
-  {
-    "name": "Fish Tacos",
-    "ingredients": [
-      { "name": "Whitefish", "amount": 1, "measurement": "l lb" },
-      { "name": "Cheese", "amount": 1, "measurement": "cup" },
-      { "name": "Iceberg Lettuce", "amount": 2, "measurement": "cups" },
-      { "name": "Tomatoes", "amount": 2, "measurement": "large"},
-      { "name": "Tortillas", "amount": 3, "measurement": "med" }
-    ],
-    "steps": [
-      "Cook the fish on the grill until hot.",
-      "Place the fish on the 3 tortillas.",
-      "Top them with lettuce, tomatoes, and cheese"
-    ]
+const logColor = (title, color) =>
+  console.log(`New color: ${title} ${color}`)
+
+// class AddColorForm extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.submit = this.submit.bind(this);
+//   }
+
+//   submit(e) {
+//     const { _title, _color } = this.refs;
+//     e.preventDefault();
+//     this.props.onNewColor(_title.value, _color.value);
+//     _title.value = '';
+//     _color.value = '';
+//     _title.focus();
+//   }
+
+//   render() {
+//     return (
+//       <form onSubmit={this.submit}>
+//         <h1>Enter data</h1>
+//         <input ref="_title" type="text" placeholder="Color title..."/>
+//         <input ref="_color" type="color"/> 
+//         <button>add</button>
+//       </form>
+//     )
+//   }
+// }
+
+const AddColorForm = ({onNewColor = f=>f}) => {
+  let _title, _color;
+  const submit = (e) => {
+    e.preventDefault();
+    onNewColor(_title.value, _color.value);
+    _title.value = '';
+    _color.value = '';
+    _title.focus();
   }
-];
 
-class Summary extends Component {
-  render() {
-    const { ingredients, steps, title } = this.props;
-    return (
-      <div className="summary">
-        <h1>{title}</h1> 
-        <p>
-          <span>{ingredients} Ingredients | </span>
-          <span>{steps} Steps</span>
-        </p>
-      </div>
-    )
-  }
-}
-// проверки на типы и расширенная проверка
-Summary.propTypes = {
-  ingredients: PropTypes.number.isRequired,
-  steps: PropTypes.number.isRequired,
-  title: (props, propName) =>
-    (typeof props[propName] !== 'string') ?
-      new Error('A title must be a string') :
-      (props[propName].length > 20) ?
-        new Error('Title is over 20 characters') :
-        null
+  return (
+    <form onSubmit={submit}>
+      <h1>Enter data</h1>
+      <input ref={input => _title = input} type="text" placeholder="Color title..."/>
+      <input ref={input => _color = input} type="color"/> 
+      <button>add</button>
+    </form>
+  )
 }
 
-// props by default
-Summary.defaultProps = {
-  ingredients: 0,
-  steps: 0,
-  title: 'recipe'
+AddColorForm.propTypes = {
+  onNewColor: PropTypes.func,
 }
 
-// в функциональных компонентах значения по умолчанию можно указывать в аргументах
-// const Summary = ({ingrediends = 0, steps = 0, title='[recipe]'}) => {
-//   return (
-//     <div className="summary">
-//       <h1>{title}</h1> 
-//       <p>
-//         <span>{ingredients} Ingredients | </span>
-//         <span>{steps} Steps</span>
-//       </p>
-//     </div>
-//   )
-// }
-// в функциональном стиле аналогично
-// Summary.propTypes = {
-//   ingredients: PropTypes.number.isRequired,
-//   steps: PropTypes.number.isRequired,
-//   title: PropTypes.string.isRequired
-// }
-
-// и свойства по умолчанию
-// Summary.defaultProps = {
-//   ingredients: 0,
-//   steps: 0,
-//   title: 'recipe'
-// }
+AddColorForm.defaultProps = {
+  onNewColor: f=>f,
+}
 
 render(
-  // <Summary />,
-  <Summary ingredients={5} steps={4} title="Hello" />,
+  <AddColorForm onNewColor={logColor} />,
   document.querySelector('#react-app')
 )
