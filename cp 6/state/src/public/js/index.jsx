@@ -1,9 +1,7 @@
 import '../sass/index.sass';
 import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom';
-
-const logColor = (title, color) =>
-  console.log(`New color: ${title} ${color}`)
+import StarRating from './StarRating';
 
 // class AddColorForm extends Component {
 //   constructor(props) {
@@ -32,8 +30,10 @@ const logColor = (title, color) =>
 //   }
 // }
 
+
 const AddColorForm = ({onNewColor = f=>f}) => {
   let _title, _color;
+
   const submit = (e) => {
     e.preventDefault();
     onNewColor(_title.value, _color.value);
@@ -56,11 +56,10 @@ AddColorForm.propTypes = {
   onNewColor: PropTypes.func,
 }
 
-AddColorForm.defaultProps = {
-  onNewColor: f=>f,
-}
-
 render(
-  <AddColorForm onNewColor={logColor} />,
+  <div>
+    <StarRating totalStars={5}/>
+    <AddColorForm />
+  </div>,
   document.querySelector('#react-app')
 )
