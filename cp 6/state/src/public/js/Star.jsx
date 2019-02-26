@@ -1,7 +1,7 @@
 import '../sass/index.sass';
 import React, { PropTypes } from 'react';
 
-const Star = ({selected = false, onClick=f=>f}) => {
+const Star = ({selected = false, onClick = ()=>{}}) => {
   return (
     <div className={selected ? 'star selected' : 'star'}
       onClick={onClick}>

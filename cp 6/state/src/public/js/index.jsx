@@ -31,7 +31,7 @@ import StarRating from './StarRating';
 // }
 
 
-const AddColorForm = ({onNewColor = f=>f}) => {
+const AddColorForm = ({onNewColor = ()=>{}}) => {
   let _title, _color;
 
   const submit = (e) => {
@@ -56,10 +56,12 @@ AddColorForm.propTypes = {
   onNewColor: PropTypes.func,
 }
 
+const printColor = (name, color) => 
+  console.log(`${name}: ${color}`);
 render(
   <div>
-    <StarRating totalStars={5}/>
-    <AddColorForm />
+    <StarRating totalStars={5} />
+    <AddColorForm onNewColor={printColor} />
   </div>,
   document.querySelector('#react-app')
 )
