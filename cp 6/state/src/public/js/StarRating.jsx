@@ -1,45 +1,26 @@
-import '../sass/index.sass';
-import React, { Component, PropTypes } from 'react';
-
+import React, { PropTypes } from 'react';
 import Star from './Star';
 
-class StarRating extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      starsSelected: props.starsSelected || 0,
-    };
-    this.change = this.change.bind(this);
-  }
-  change(starsSelected) {
-    this.setState({starsSelected});
-  }
-
-  render () {
-    const { totalStars } = this.props;
-    const { starsSelected } = this.state;
-    return (
-      <div className="star-rating">
-        {[...Array(totalStars)].map((n, i) => {
-          return (
-            <Star key={i}
-                  selected={i<starsSelected}
-                  onClick={() => this.change(i+1)}
-            />
-          )
-        })}
-        <p>{starsSelected} of {totalStars} stars</p>
-      </div>
-    )
-  }
+const StarRating = ({starsSelected=0, totalStars=5, onRate=f=>f}) => {
+  return (
+    <div className="star-rating">
+      {[...Array(totalStars)].map((n, i) => {
+        return (
+          <Star key={i}
+                selected={i<starsSelected}
+                onClick={() => onRate(i+1)}
+          />
+        )
+      })}
+      <p>{starsSelected} of {totalStars} stars</p>
+    </div>
+  )
 }
 
 StarRating.propTypes = {
   totalStars: PropTypes.number,
-}
-
-StarRating.defaultProps = {
-  totalStars: 5,
+  starsSelected: PropTypes.number,
+  onRate: PropTypes.func,
 }
 
 export default StarRating;

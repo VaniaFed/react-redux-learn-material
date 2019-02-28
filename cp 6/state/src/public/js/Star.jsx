@@ -1,5 +1,5 @@
-import '../sass/index.sass';
 import React, { PropTypes } from 'react';
+import '../sass/Star.scss';
 
 const Star = ({selected = false, onClick = ()=>{}}) => {
   return (
