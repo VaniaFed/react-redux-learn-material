@@ -41,8 +41,20 @@ export const colors =  (state=[], action) => {
 }
 
 export const sort =  (state='SORTED_BY_DATE', action) => {
-  return ''
+  switch(action.type) {
+    case C.SOTR_COLORS:
+      return action.sortBy
+    default: 
+      return state
+  }
 }
+const actionSort = {
+  type: C.SOTR_COLORS,
+  sortBy: 'SORTED_BY_TITLE',
+}
+
+const state = 'SORTED_BY_DATE';
+console.log('sort:', sort(state, actionSort));
 
 const currentColors = [
   {
