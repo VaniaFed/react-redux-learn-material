@@ -23,10 +23,10 @@ export const color =  (state={}, action) => {
 export const colors =  (state=[], action) => {
   switch(action.type) {
     case C.ADD_COLOR:
-      return {
+      return [
         ...state,
         color({}, action)
-      }
+      ]
     case C.RATE_COLOR:
       return state.map(
         currentColor => color(currentColor, action)
@@ -44,23 +44,33 @@ export const sort =  (state='SORTED_BY_DATE', action) => {
   return ''
 }
 
-
-
+const currentColors = [
+  {
+    id: 2,
+    title: 'green',
+    color: '0f0',
+    timestamp: new Date(),
+    rating: 0,
+  }
+]
 const actionAdd = {
   type: C.ADD_COLOR,
-  id: '1',
+  id: 1,
   title: 'red',
   color: '#f00',
   timestamp: new Date(),
   rating: 0,
 }
 
-let newColor = color({}, actionAdd)
-console.log(newColor)
+console.log( colors(currentColors, actionAdd) )
 
-const actionRate = {
-  type: C.RATE_COLOR,
-  rating: 5,
-}
-const ratedColor = color(newColor, actionRate)
-console.log(ratedColor)
+// let newColor = color({}, actionAdd)
+// console.log(newColor)
+
+// const actionRate = {
+//   type: C.RATE_COLOR,
+//   rating: 5,
+// }
+// const ratedColor = color(newColor, actionRate)
+// console.log(ratedColor)
+
