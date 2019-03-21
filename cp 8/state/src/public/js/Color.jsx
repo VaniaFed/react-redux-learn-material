@@ -9,7 +9,7 @@ class Color extends Component {
   }
 
   componentWillMount() {
-    this.style = { backgroundColor: '#ccc'};
+    // this.style = { backgroundColor: '#ccc'};
   }
 
   shouldComponentUpdate(nextProps) {

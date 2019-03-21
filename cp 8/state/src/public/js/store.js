@@ -30,11 +30,16 @@ const initialState = {
 
 const store = createStore(
   combineReducers({ colors, sort }),
-  initialState
+  (localStorage['redux-store']) ?
+    JSON.parse( localStorage['redux-store'] ) :
+    {}
 )
 
 const unsubscribe = store.subscribe(() => {console.log('state now: ', store.getState())})
 
+store.subscribe(() => {
+  localStorage['redux-store'] = JSON.stringify( store.getState() )
+})
 
 store.dispatch({
   type: 'ADD_COLOR',
@@ -44,7 +49,7 @@ store.dispatch({
   rating: 5,
 })
 
-unsubscribe()
+// unsubscribe()
 
 store.dispatch({
   type: 'REMOVE_COLOR',
