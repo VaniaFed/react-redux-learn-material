@@ -33,19 +33,22 @@ const store = createStore(
   initialState
 )
 
+const unsubscribe = store.subscribe(() => {console.log('state now: ', store.getState())})
+
+
 store.dispatch({
   type: 'ADD_COLOR',
   id: 3,
   title: "Big Blue",
   color: "#0000FF",
   rating: 5,
-});
+})
+
+unsubscribe()
 
 store.dispatch({
   type: 'REMOVE_COLOR',
   id: 2,
-});
-
-console.log( store.getState().colors )
+})
 
 export default store

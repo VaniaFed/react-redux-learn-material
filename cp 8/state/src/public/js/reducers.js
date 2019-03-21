@@ -53,8 +53,8 @@ const actionSort = {
   sortBy: 'SORTED_BY_TITLE',
 }
 
-const state = 'SORTED_BY_DATE';
-console.log('sort:', sort(state, actionSort));
+// const state = 'SORTED_BY_DATE';
+// console.log('sort:', sort(state, actionSort));
 
 const currentColors = [
   {
@@ -74,7 +74,7 @@ const actionAdd = {
   rating: 0,
 }
 
-console.log( colors(currentColors, actionAdd) )
+// console.log( colors(currentColors, actionAdd) )
 
 // let newColor = color({}, actionAdd)
 // console.log(newColor)
