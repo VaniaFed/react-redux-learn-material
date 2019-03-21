@@ -1,0 +1,11 @@
+cp\ 2/node_modules
+cp\ 3/node_modules
+cp\ 4/node_modules
+cp\ 5/node_modules
+cp\ 6/props/node_modules
+cp\ 6/state/node_modules
+cp\ 6/tree/node_modules
+cp\ 7/clock/node_modules
+cp\ 7/count_down/node_modules
+cp\ 7/lifeCycle/node_modules
+cp\ 7/hiddenmessages/node_modules
