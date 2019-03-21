@@ -75,4 +75,4 @@ const startTicking = () =>
 		oneSecond()
 	)
 
-startTicking()
+startTicking();
