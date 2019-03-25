@@ -8,29 +8,8 @@ class Color extends Component {
     super(props);
   }
 
-  componentWillMount() {
-    // this.style = { backgroundColor: '#ccc'};
-  }
-
   shouldComponentUpdate(nextProps) {
     return this.props.rating !== nextProps.rating;
-  }
-
-  componentWillUpdate(nextProps) {
-    const { title, rating } = this.props;
-    this.style = null;
-
-    this.refs.title.style.backgroundColor = 'red';
-    this.refs.title.style.color = 'white';
-    alert(`${title}: rating ${rating} => ${nextProps.rating}`)
-  }
-
-  componentDidUpdate(prevProps) {
-
-    const { title, rating } = this.props;
-    const status = (rating > prevProps.rating) ? 'better' : 'worse';
-    this.refs.title.style.backgroundColor = '';
-    this.refs.title.style.color = 'black';
   }
 
   render () {
@@ -51,19 +30,11 @@ class Color extends Component {
 }
 
 Color.propTypes = {
-  title: PropTypes.string.isRequired,
-  color: PropTypes.string.isRequired,
-  rating: PropTypes.number,
-  onRate: PropTypes.func,
-  onRemove: PropTypes.func,
+  store: PropTypes.object,
 }
 
 Color.defaultProps = {
-  title: undefined,
-  rating: 0,
-  color: '#000',
-  onRate: f=>f,
-  onRemove: f=>f,
+  store: {},
 }
 
 export default Color; 

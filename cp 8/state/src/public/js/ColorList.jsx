@@ -1,18 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Color from './Color';
+import { removeColor, rateColor } from './actions';
 import '../sass/ColorList.scss';
 
-const ColorList = ({colors = [], onRate=f=>f, onRemove=f=>f}) => {
+const ColorList = ({ store={} }) => {
+  const state = store.getState();
   return (
     <div className="color-list">
-      {(colors.length) === 0 ?
+      {(state.colors.length) === 0 ?
       <h1>No colors Listed. (Add a color)</h1> :
-      colors.map(color => 
+      state.colors.map(color => 
         <Color key={color.id}
                {...color}
-               onRate={(rating) => onRate(color.id, rating)}
-               onRemove={() => onRemove(color.id)} />
+               onRate={(rating) => {
+                 store.dispatch(
+                   rateColor(color.id, rating)
+                 );
+               }} 
+               onRemove={() => {
+                 store.dispatch(
+                   removeColor(color.id)
+                 );
+               }}
+        />
       )
     } 
     </div>
@@ -20,9 +31,7 @@ const ColorList = ({colors = [], onRate=f=>f, onRemove=f=>f}) => {
 };
 
 Color.propTypes = {
-  colors: PropTypes.array,
-  onRate: PropTypes.func,
-  onRemove: PropTypes.func,
+  store: PropTypes.object,
 }
 
 export default ColorList;

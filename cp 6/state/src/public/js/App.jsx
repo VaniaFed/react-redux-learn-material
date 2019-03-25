@@ -84,7 +84,9 @@ export default class App extends Component {
     return (
       <div className="app">
         <AddColorForm onNewColor={addColor} />
-        <ColorList colors={colors} onRate={rateColor} onRemove={removeColor} />
+        <ColorList colors={colors}
+        onRate={rateColor}
+        onRemove={removeColor} />
       </div>
     )
   }

@@ -1,13 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../sass/AddColorForm.scss';
+import { addColor } from './actions';
 
-const AddColorForm = ({onNewColor = ()=>{}}) => {
+const AddColorForm = ({ store }) => {
   let _title, _color;
 
   const submit = (e) => {
     e.preventDefault();
-    onNewColor(_title.value, _color.value);
+    const color = {
+      title: _title.value,
+      color: _color.value,
+    }
+    store.dispatch( addColor(color) )
     _title.value = '';
     _color.value = '';
     _title.focus();

@@ -1,5 +1,6 @@
 import { createStore, combineReducers } from 'redux'
 import { colors, sort } from './reducers'
+import { addColor, removeColor } from './actions';
 
 const initialState = {
   colors: [
@@ -41,13 +42,8 @@ store.subscribe(() => {
   localStorage['redux-store'] = JSON.stringify( store.getState() )
 })
 
-store.dispatch({
-  type: 'ADD_COLOR',
-  id: 3,
-  title: "Big Blue",
-  color: "#0000FF",
-  rating: 5,
-})
+// const color = initialState.colors[3];
+// store.dispatch( addColor(color) );
 
 // unsubscribe()
 
@@ -56,4 +52,6 @@ store.dispatch({
   id: 2,
 })
 
-export default store
+store.dispatch( removeColor(0) );
+
+export default store;

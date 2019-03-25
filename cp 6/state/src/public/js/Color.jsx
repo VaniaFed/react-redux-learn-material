@@ -9,7 +9,6 @@ class Color extends Component {
   }
 
   componentWillMount() {
-    this.style = { backgroundColor: '#ccc'};
   }
 
   shouldComponentUpdate(nextProps) {
@@ -17,12 +16,6 @@ class Color extends Component {
   }
 
   componentWillUpdate(nextProps) {
-    const { title, rating } = this.props;
-    this.style = null;
-
-    this.refs.title.style.backgroundColor = 'red';
-    this.refs.title.style.color = 'white';
-    alert(`${title}: rating ${rating} => ${nextProps.rating}`)
   }
 
   componentDidUpdate(prevProps) {
